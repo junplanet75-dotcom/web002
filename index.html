@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>외출 준비물 체크</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+        
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+            background-color: #FFFDF9;
+            color: #4A3E3D;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Custom Checkbox Styling */
+        .custom-checkbox {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 2.25rem;
+            height: 2.25rem;
+            border: 3px solid #D1C2B4;
+            border-radius: 0.75rem;
+            outline: none;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            position: relative;
+            background-color: #FFFFFF;
+        }
+
+        .custom-checkbox:checked {
+            background-color: #FF8A65;
+            border-color: #FF8A65;
+        }
+
+        .custom-checkbox:checked::after {
+            content: '✓';
+            position: absolute;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -52%);
+        }
+
+        /* Touch interaction ripple effect */
+        .item-card {
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+        .item-card:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body class="min-h-screen py-8 px-4 sm:px-6 flex flex-col items-center justify-start">
+
+    <main class="w-full max-w-md mx-auto flex flex-col gap-6">
+
+        <!-- HEADER SECTION -->
+        <header class="text-center bg-amber-100/60 p-6 rounded-3xl border border-amber-200/80 shadow-sm">
+            <h1 class="text-3xl font-extrabold text-stone-800 tracking-tight mb-2">
+                🏠 외출 준비물 체크
+            </h1>
+            <p class="text-stone-600 text-lg font-medium leading-relaxed">
+                밖으로 나가기 전에 차근차근 확인해 보세요.<br>즐거운 외출을 시작할 수 있어요!
+            </p>
+        </header>
+
+        <!-- STORY PHOTOS SECTION -->
+        <section class="flex flex-col gap-5" aria-label="외출 준비 순서">
+            
+            <!-- Scene 1 -->
+            <article class="bg-white p-4 rounded-2xl shadow-md border border-orange-100 flex flex-col items-center">
+                <div class="w-full bg-orange-50 rounded-xl overflow-hidden mb-3 aspect-[4/3] flex items-center justify-center">
+                    <img 
+                        src="scene1.jpg" 
+                        alt="외출을 준비해요" 
+                        class="w-full h-full object-cover rounded-xl"
+                        onerror="this.onerror=null; this.parentNode.innerHTML='<div class=\'p-8 text-center text-amber-700 bg-amber-50 h-full flex flex-col justify-center items-center rounded-xl\'><span class=\'text-4xl mb-2\'>🌅</span><span class=\'font-semibold text-lg\'>scene1.jpg</span></div>';"
+                    >
+                </div>
+                <p class="text-lg font-bold text-stone-700 text-center">
+                    1. 외출을 준비해요
+                </p>
+            </article>
+
+            <!-- Scene 2 -->
+            <article class="bg-white p-4 rounded-2xl shadow-md border border-orange-100 flex flex-col items-center">
+                <div class="w-full bg-orange-50 rounded-xl overflow-hidden mb-3 aspect-[4/3] flex items-center justify-center">
+                    <img 
+                        src="scene2.jpg" 
+                        alt="준비물을 확인해요" 
+                        class="w-full h-full object-cover rounded-xl"
+                        onerror="this.onerror=null; this.parentNode.innerHTML='<div class=\'p-8 text-center text-amber-700 bg-amber-50 h-full flex flex-col justify-center items-center rounded-xl\'><span class=\'text-4xl mb-2\'>🔍</span><span class=\'font-semibold text-lg\'>scene2.jpg</span></div>';"
+                    >
+                </div>
+                <p class="text-lg font-bold text-stone-700 text-center">
+                    2. 준비물을 확인해요
+                </p>
+            </article>
+
+            <!-- Scene 3 -->
+            <article class="bg-white p-4 rounded-2xl shadow-md border border-orange-100 flex flex-col items-center">
+                <div class="w-full bg-orange-50 rounded-xl overflow-hidden mb-3 aspect-[4/3] flex items-center justify-center">
+                    <img 
+                        src="scene3.jpg" 
+                        alt="즐겁게 출발해요" 
+                        class="w-full h-full object-cover rounded-xl"
+                        onerror="this.onerror=null; this.parentNode.innerHTML='<div class=\'p-8 text-center text-amber-700 bg-amber-50 h-full flex flex-col justify-center items-center rounded-xl\'><span class=\'text-4xl mb-2\'>🚪</span><span class=\'font-semibold text-lg\'>scene3.jpg</span></div>';"
+                    >
+                </div>
+                <p class="text-lg font-bold text-stone-700 text-center">
+                    3. 즐겁게 출발해요
+                </p>
+            </article>
+
+        </section>
+
+        <!-- CHECKLIST SECTION -->
+        <section class="bg-amber-50/70 p-5 rounded-3xl border border-amber-200/60 shadow-sm flex flex-col gap-4">
+            <h2 class="text-xl font-bold text-stone-800 flex items-center gap-2">
+                <span>📋</span> 챙길 물건을 체크해 보세요
+            </h2>
+
+            <div class="flex flex-col gap-3">
+                <!-- Item 1: 휴대전화 -->
+                <label class="item-card flex items-center justify-between bg-white p-4 rounded-2xl border border-stone-200 shadow-sm cursor-pointer select-none">
+                    <div class="flex items-center gap-3">
+                        <span class="text-2xl">📱</span>
+                        <span class="text-xl font-semibold text-stone-800">휴대전화</span>
+                    </div>
+                    <input type="checkbox" value="휴대전화" class="custom-checkbox item-checkbox">
+                </label>
+
+                <!-- Item 2: 지갑 -->
+                <label class="item-card flex items-center justify-between bg-white p-4 rounded-2xl border border-stone-200 shadow-sm cursor-pointer select-none">
+                    <div class="flex items-center gap-3">
+                        <span class="text-2xl">👛</span>
+                        <span class="text-xl font-semibold text-stone-800">지갑</span>
+                    </div>
+                    <input type="checkbox" value="지갑" class="custom-checkbox item-checkbox">
+                </label>
+
+                <!-- Item 3: 물병 -->
+                <label class="item-card flex items-center justify-between bg-white p-4 rounded-2xl border border-stone-200 shadow-sm cursor-pointer select-none">
+                    <div class="flex items-center gap-3">
+                        <span class="text-2xl">💧</span>
+                        <span class="text-xl font-semibold text-stone-800">물병</span>
+                    </div>
+                    <input type="checkbox" value="물병" class="custom-checkbox item-checkbox">
+                </label>
+
+                <!-- Item 4: 우산 -->
+                <label class="item-card flex items-center justify-between bg-white p-4 rounded-2xl border border-stone-200 shadow-sm cursor-pointer select-none">
+                    <div class="flex items-center gap-3">
+                        <span class="text-2xl">☂️</span>
+                        <span class="text-xl font-semibold text-stone-800">우산</span>
+                    </div>
+                    <input type="checkbox" value="우산" class="custom-checkbox item-checkbox">
+                </label>
+            </div>
+
+            <!-- RESULT MESSAGE DISPLAY BOX -->
+            <div id="resultBox" class="hidden p-4 rounded-2xl text-center text-lg font-bold shadow-sm transition-all duration-300 mt-1"></div>
+
+            <!-- BUTTONS SECTION -->
+            <div class="flex flex-col gap-3 mt-2">
+                <button 
+                    type="button" 
+                    id="checkBtn"
+                    class="w-full py-4 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white text-xl font-bold rounded-2xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer"
+                >
+                    <span>✨</span> 준비 확인
+                </button>
+
+                <button 
+                    type="button" 
+                    id="resetBtn"
+                    class="w-full py-3.5 bg-stone-200 hover:bg-stone-300 active:bg-stone-400 text-stone-700 text-lg font-bold rounded-2xl transition-all flex items-center justify-center gap-2 cursor-pointer"
+                >
+                    <span>🔄</span> 다시 확인하기
+                </button>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="text-center text-stone-400 text-sm py-4">
+            외출 준비물 체크 웹앱
+        </footer>
+
+    </main>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const checkBtn = document.getElementById('checkBtn');
+            const resetBtn = document.getElementById('resetBtn');
+            const resultBox = document.getElementById('resultBox');
+            const checkboxes = document.querySelectorAll('.item-checkbox');
+
+            // '준비 확인' 버튼 클릭 이벤트 처리
+            checkBtn.addEventListener('click', function () {
+                const uncheckedItems = [];
+
+                checkboxes.forEach(function (checkbox) {
+                    if (!checkbox.checked) {
+                        uncheckedItems.push(checkbox.value);
+                    }
+                });
+
+                resultBox.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-800', 'border-emerald-300', 'bg-rose-100', 'text-rose-800', 'border-rose-300', 'border');
+
+                if (uncheckedItems.length === 0) {
+                    // 모두 체크된 경우
+                    resultBox.classList.add('bg-emerald-100', 'text-emerald-800', 'border-emerald-300', 'border');
+                    resultBox.innerHTML = '🎉 준비 완료! 즐겁게 다녀오세요. 😊';
+                } else {
+                    // 미체크 준비물이 남아있는 경우
+                    resultBox.classList.add('bg-rose-100', 'text-rose-800', 'border-rose-300', 'border');
+                    resultBox.innerHTML = '⚠️ 아직 챙기지 않은 준비물이 있어요:<br><span class="underline decoration-2 font-black mt-1 inline-block">' + uncheckedItems.join(', ') + '</span>';
+                }
+
+                // 결과 상자로 부드럽게 스크롤
+                resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            });
+
+            // '다시 확인하기' 버튼 클릭 이벤트 처리
+            resetBtn.addEventListener('click', function () {
+                checkboxes.forEach(function (checkbox) {
+                    checkbox.checked = false;
+                });
+
+                // 결과 상자 숨기기 및 초기화
+                resultBox.classList.add('hidden');
+                resultBox.innerHTML = '';
+            });
+        });
+    </script>
+</body>
+</html>
